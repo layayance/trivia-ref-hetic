@@ -18,7 +18,11 @@ class Player {
   };
 
   playerWins = (): boolean => {
-    return this.coins === 6;
+    const playerWins = this.coins === 6;
+    if (playerWins) {
+      console.log(`${this.name} won the game.`);
+    }
+    return playerWins;
   };
 
   deprecatedGetName = (): string => this.name;

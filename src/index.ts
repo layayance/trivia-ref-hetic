@@ -106,9 +106,6 @@ export class Game {
         this.players.getCurrentPlayer().earnACoin();
 
         var winner = this.didPlayerWin();
-        if (winner) {
-          console.log(`${this.deprecatedGetCurrentPlayerName()} won the game.`);
-        }
 
         this.players.switchToNextPlayer();
 
@@ -131,9 +128,6 @@ export class Game {
       this.players.getCurrentPlayer().earnACoin();
 
       var winner = this.didPlayerWin();
-      if (winner) {
-        console.log(`${this.deprecatedGetCurrentPlayerName()} won the game.`);
-      }
 
       this.players.switchToNextPlayer();
 
