@@ -150,3 +150,31 @@ test("place -> category", async () => {
     game.roll(12);
   });
 });
+
+test("A player provides a wrong answer ang goes to penalty box", async () => {
+  runGoldenMaster(async () => {
+    const game = new Game();
+    game.add("Mathieu");
+    game.add("Thomas");
+
+    game.roll(1);
+    game.wrongAnswer();
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+  });
+});
+
+test("A player provides a wrong answer ang goes to penalty box", async () => {
+  runGoldenMaster(async () => {
+    const game = new Game();
+    game.add("Mathieu");
+    game.add("Thomas");
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    game.roll(1);
+    game.wrongAnswer();
+  });
+});

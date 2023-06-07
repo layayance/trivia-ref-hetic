@@ -92,10 +92,15 @@ export class Game {
   }
 
   public wrongAnswer(): boolean {
+    console.log(
+      `${this.deprecatedGetCurrentPlayerName()} provided a wrong answer and consequently goes to penalty box.`
+    );
     this.inPenaltyBox[this.currentPlayer] = true;
 
     this.currentPlayer += 1;
     if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
+    console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
+
     return false;
   }
 
@@ -121,7 +126,7 @@ export class Game {
       console.log(
         `${this.deprecatedGetCurrentPlayerName()} earned a coin and consequently has ${
           this.purses[this.currentPlayer]
-        } points.`
+        } point(s).`
       );
 
       var winner = this.didPlayerWin();
