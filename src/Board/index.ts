@@ -1,6 +1,8 @@
 import { Category } from "../AllQuestionsSets";
 
 class Board {
+  static shiftPosition = (position: number, by: number): number => (position + by) % 12;
+
   static computeCurrentCategory = (position: number): Category => {
     // 9/4 = 2 * 4 + 1
     // 2: quotient

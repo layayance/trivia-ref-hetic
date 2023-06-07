@@ -33,10 +33,8 @@ export class Game {
         // - inPenaltyBox: ${this.inPenaltyBox[this.currentPlayer]}
         // - isGettingOutOfPenaltyBox: ${this.isGettingOutOfPenaltyBox}`);
 
-        this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-        if (this.places[this.currentPlayer] > 11) {
-          this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-        }
+        this.places[this.currentPlayer] = Board.shiftPosition(this.places[this.currentPlayer], roll);
+
         console.log(
           `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and might go out of the penalty box; their new position is ${
             this.places[this.currentPlayer]
