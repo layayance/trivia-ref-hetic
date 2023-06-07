@@ -6,16 +6,12 @@ import Player from "./Player";
 export class Game {
   private players = new AllPlayers();
 
-  private deprecatedPlayers: Array<string> = [];
-  private deprecatedCurrentPlayerIndex: number = 0;
-
   private isGettingOutOfPenaltyBox: boolean = false;
 
   private questions = new AllQuestionsSets();
 
   public add(name: string) {
     this.players.add(new Player(name));
-    this.deprecatedPlayers.push(name);
   }
 
   public roll(roll: number) {
@@ -80,8 +76,6 @@ export class Game {
 
     this.players.switchToNextPlayer();
 
-    this.deprecatedCurrentPlayerIndex += 1;
-    if (this.deprecatedCurrentPlayerIndex == this.deprecatedPlayers.length) this.deprecatedCurrentPlayerIndex = 0;
     console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
 
     return false;
@@ -100,8 +94,6 @@ export class Game {
 
         this.players.switchToNextPlayer();
 
-        this.deprecatedCurrentPlayerIndex += 1;
-        if (this.deprecatedCurrentPlayerIndex == this.deprecatedPlayers.length) this.deprecatedCurrentPlayerIndex = 0;
         console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
 
         return winner;
@@ -110,8 +102,6 @@ export class Game {
 
         this.players.switchToNextPlayer();
 
-        this.deprecatedCurrentPlayerIndex += 1;
-        if (this.deprecatedCurrentPlayerIndex == this.deprecatedPlayers.length) this.deprecatedCurrentPlayerIndex = 0;
         console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
         return false;
       }
@@ -122,8 +112,6 @@ export class Game {
 
       this.players.switchToNextPlayer();
 
-      this.deprecatedCurrentPlayerIndex += 1;
-      if (this.deprecatedCurrentPlayerIndex == this.deprecatedPlayers.length) this.deprecatedCurrentPlayerIndex = 0;
       console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
 
       return winner;
