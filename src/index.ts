@@ -9,7 +9,6 @@ export class Game {
   private deprecatedPlayers: Array<string> = [];
   private deprecatedCurrentPlayerIndex: number = 0;
 
-  private deprecatedPurses: Array<number> = [];
   private deprecatedInPenaltyBox: Array<boolean> = [];
 
   private isGettingOutOfPenaltyBox: boolean = false;
@@ -20,7 +19,6 @@ export class Game {
     this.players.add(new Player(name));
 
     this.deprecatedPlayers.push(name);
-    this.deprecatedPurses[this.howManyPlayers() - 1] = 0;
     this.deprecatedInPenaltyBox[this.howManyPlayers() - 1] = false;
     console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
   }
@@ -80,7 +78,7 @@ export class Game {
   }
 
   private didPlayerWin(): boolean {
-    return this.deprecatedPurses[this.deprecatedCurrentPlayerIndex] == 6;
+    return this.players.getCurrentPlayer().playerWins();
   }
 
   public wrongAnswer(): boolean {
@@ -105,12 +103,7 @@ export class Game {
         this.deprecatedInPenaltyBox[this.deprecatedCurrentPlayerIndex] = false;
         console.log(`${this.deprecatedGetCurrentPlayerName()} goes out of the penalty box.`);
 
-        this.deprecatedPurses[this.deprecatedCurrentPlayerIndex] += 1;
-        console.log(
-          `${this.deprecatedGetCurrentPlayerName()} earned a coin and consequently has ${
-            this.deprecatedPurses[this.deprecatedCurrentPlayerIndex]
-          } point(s).`
-        );
+        this.players.getCurrentPlayer().earnACoin();
 
         var winner = this.didPlayerWin();
         if (winner) {
@@ -135,12 +128,7 @@ export class Game {
         return false;
       }
     } else {
-      this.deprecatedPurses[this.deprecatedCurrentPlayerIndex] += 1;
-      console.log(
-        `${this.deprecatedGetCurrentPlayerName()} earned a coin and consequently has ${
-          this.deprecatedPurses[this.deprecatedCurrentPlayerIndex]
-        } point(s).`
-      );
+      this.players.getCurrentPlayer().earnACoin();
 
       var winner = this.didPlayerWin();
       if (winner) {
