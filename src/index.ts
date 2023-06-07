@@ -41,6 +41,11 @@ export class Game {
       if (roll % 2 != 0) {
         this.isGettingOutOfPenaltyBox = true;
 
+        // console.log(`This is a paradox:
+        // - place: ${this.places[this.currentPlayer]}
+        // - inPenaltyBox: ${this.inPenaltyBox[this.currentPlayer]}
+        // - isGettingOutOfPenaltyBox: ${this.isGettingOutOfPenaltyBox}`);
+
         this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
         if (this.places[this.currentPlayer] > 11) {
           this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
