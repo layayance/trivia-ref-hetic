@@ -6,8 +6,6 @@ import Player from "./Player";
 export class Game {
   private players = new AllPlayers();
 
-  private isGettingOutOfPenaltyBox: boolean = false;
-
   private questions = new AllQuestionsSets();
 
   public add(name: string) {
@@ -15,53 +13,7 @@ export class Game {
   }
 
   public roll(roll: number) {
-    if (this.players.getCurrentPlayer().deprecatedIsInPenaltyBox()) {
-      if (roll % 2 != 0) {
-        this.isGettingOutOfPenaltyBox = true;
-
-        // console.log(`This is a paradox:
-        // - place: ${this.places[this.currentPlayer]}
-        // - inPenaltyBox: ${this.inPenaltyBox[this.currentPlayer]}
-        // - isGettingOutOfPenaltyBox: ${this.isGettingOutOfPenaltyBox}`);
-
-        this.players.getCurrentPlayer().move(roll);
-
-        console.log(
-          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and might go out of the penalty box; their new position is ${this.players
-            .getCurrentPlayer()
-            .deprecatedGetPosition()}.`
-        );
-
-        this.askQuestion();
-      } else {
-        this.isGettingOutOfPenaltyBox = false;
-        console.log(
-          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and stays in penalty box (their position is ${this.players
-            .getCurrentPlayer()
-            .deprecatedGetPosition()}).`
-        );
-      }
-    } else {
-      this.players.getCurrentPlayer().move(roll);
-
-      console.log(
-        `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and their new position is ${this.players
-          .getCurrentPlayer()
-          .deprecatedGetPosition()}.`
-      );
-
-      this.askQuestion();
-    }
-  }
-
-  private askQuestion(): void {
-    const question = this.questions.ask(this.currentCategory() as Category);
-    console.log(question);
-  }
-
-  private currentCategory(): string {
-    const position = this.players.getCurrentPlayer().deprecatedGetPosition();
-    return Board.computeCurrentCategory(position);
+    this.players.getCurrentPlayer().roll(this.questions, roll);
   }
 
   private didPlayerWin(): boolean {
@@ -82,7 +34,7 @@ export class Game {
   public wasCorrectlyAnswered(): boolean {
     console.log(`${this.deprecatedGetCurrentPlayerName()} provided the correct answer.`);
     if (this.players.getCurrentPlayer().deprecatedIsInPenaltyBox()) {
-      if (this.isGettingOutOfPenaltyBox) {
+      if (this.players.getCurrentPlayer().deprecatedGetIsGettingOutOfPenaltyBox()) {
         this.players.getCurrentPlayer().deprecatedFreeOfPenaltyBox();
         console.log(`${this.deprecatedGetCurrentPlayerName()} goes out of the penalty box.`);
 
