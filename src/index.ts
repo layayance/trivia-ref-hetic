@@ -142,8 +142,10 @@ export class Game {
 
         return winner;
       } else {
+        console.log("This should NOT happen!");
         this.currentPlayer += 1;
         if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
+        console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
         return false;
       }
     } else {
