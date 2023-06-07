@@ -31,12 +31,6 @@ class Player {
     return playerWins;
   };
 
-  private askQuestion(questions: AllQuestionsSets): void {
-    const category = Board.computeCurrentCategory(this.position);
-    const question = questions.ask(category);
-    console.log(question);
-  }
-
   roll = (questions: AllQuestionsSets, roll: number): void => {
     if (this.isInPenaltyBox) {
       if (roll % 2 != 0) {
@@ -49,17 +43,18 @@ class Player {
         );
 
         this.askQuestion(questions);
-      } else {
-        this.deprecatedIsGettingOutOfPenaltyBox = false;
-        console.log(`${this.name} rolled a ${roll} and stays in penalty box (their position is ${this.position}).`);
+        return;
       }
-    } else {
-      this.move(roll);
 
-      console.log(`${this.name} rolled a ${roll} and their new position is ${this.position}.`);
-
-      this.askQuestion(questions);
+      this.deprecatedIsGettingOutOfPenaltyBox = false;
+      console.log(`${this.name} rolled a ${roll} and stays in penalty box (their position is ${this.position}).`);
+      return;
     }
+    this.move(roll);
+
+    console.log(`${this.name} rolled a ${roll} and their new position is ${this.position}.`);
+
+    this.askQuestion(questions);
   };
 
   provideWrongAnswer = (): void => {
@@ -80,19 +75,25 @@ class Player {
         var winner = this.playerWins();
 
         return winner;
-      } else {
-        console.log("This should NOT happen!");
-        return false;
       }
-    } else {
-      this.earnACoin();
-      return this.playerWins();
+
+      console.log("This should NOT happen!");
+      return false;
     }
+
+    this.earnACoin();
+    return this.playerWins();
   };
 
   logCurrentPlayer = (): void => {
     console.log(`The new current player is ${this.name}.`);
   };
+
+  private askQuestion(questions: AllQuestionsSets): void {
+    const category = Board.computeCurrentCategory(this.position);
+    const question = questions.ask(category);
+    console.log(question);
+  }
 }
 
 export default Player;
