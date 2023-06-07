@@ -16,10 +16,6 @@ export class Game {
     this.players.getCurrentPlayer().roll(this.questions, roll);
   }
 
-  private didPlayerWin(): boolean {
-    return this.players.getCurrentPlayer().playerWins();
-  }
-
   public wrongAnswer(): boolean {
     this.players.getCurrentPlayer().provideWrongAnswer();
 
@@ -29,36 +25,8 @@ export class Game {
   }
 
   public wasCorrectlyAnswered(): boolean {
-    console.log(`${this.deprecatedGetCurrentPlayerName()} provided the correct answer.`);
-    if (this.players.getCurrentPlayer().deprecatedIsInPenaltyBox()) {
-      if (this.players.getCurrentPlayer().deprecatedGetIsGettingOutOfPenaltyBox()) {
-        this.players.getCurrentPlayer().deprecatedFreeOfPenaltyBox();
-        console.log(`${this.deprecatedGetCurrentPlayerName()} goes out of the penalty box.`);
-
-        this.players.getCurrentPlayer().earnACoin();
-
-        var winner = this.didPlayerWin();
-
-        this.players.switchToNextPlayer();
-
-        return winner;
-      } else {
-        console.log("This should NOT happen!");
-
-        this.players.switchToNextPlayer();
-
-        return false;
-      }
-    } else {
-      this.players.getCurrentPlayer().earnACoin();
-
-      var winner = this.didPlayerWin();
-
-      this.players.switchToNextPlayer();
-
-      return winner;
-    }
+    const winner = this.players.getCurrentPlayer().provideCorrectAnswer();
+    this.players.switchToNextPlayer();
+    return winner;
   }
-
-  private deprecatedGetCurrentPlayerName = (): string => this.players.getCurrentPlayer().deprecatedGetName();
 }

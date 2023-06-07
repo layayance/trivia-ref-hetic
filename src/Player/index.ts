@@ -65,6 +65,29 @@ class Player {
     this.isInPenaltyBox = true;
   };
 
+  provideCorrectAnswer = (): boolean => {
+    console.log(`${this.name} provided the correct answer.`);
+
+    if (this.isInPenaltyBox) {
+      if (this.deprecatedIsGettingOutOfPenaltyBox) {
+        this.isInPenaltyBox = false;
+        console.log(`${this.name} goes out of the penalty box.`);
+
+        this.earnACoin();
+
+        var winner = this.playerWins();
+
+        return winner;
+      } else {
+        console.log("This should NOT happen!");
+        return false;
+      }
+    } else {
+      this.earnACoin();
+      return this.playerWins();
+    }
+  };
+
   deprecatedGetName = (): string => this.name;
 
   deprecatedFreeOfPenaltyBox = (): void => {
