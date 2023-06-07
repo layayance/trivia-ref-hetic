@@ -76,8 +76,6 @@ export class Game {
 
     this.players.switchToNextPlayer();
 
-    console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
-
     return false;
   }
 
@@ -94,15 +92,12 @@ export class Game {
 
         this.players.switchToNextPlayer();
 
-        console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
-
         return winner;
       } else {
         console.log("This should NOT happen!");
 
         this.players.switchToNextPlayer();
 
-        console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
         return false;
       }
     } else {
@@ -111,8 +106,6 @@ export class Game {
       var winner = this.didPlayerWin();
 
       this.players.switchToNextPlayer();
-
-      console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
 
       return winner;
     }
