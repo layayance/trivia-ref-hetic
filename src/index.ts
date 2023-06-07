@@ -4,9 +4,8 @@ import Board from "./Board";
 import Player from "./Player";
 
 export class Game {
-  private players = new AllPlayers();
-
   private questions = new AllQuestionsSets();
+  private players = new AllPlayers();
 
   public add(name: string) {
     this.players.add(new Player(name));
@@ -18,9 +17,7 @@ export class Game {
 
   public wrongAnswer(): boolean {
     this.players.getCurrentPlayer().provideWrongAnswer();
-
     this.players.switchToNextPlayer();
-
     return false;
   }
 

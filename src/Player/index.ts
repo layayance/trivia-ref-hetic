@@ -8,7 +8,9 @@ class Player {
 
   private deprecatedIsGettingOutOfPenaltyBox = false;
 
-  constructor(private name: string) {}
+  constructor(private name: string) {
+    console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
+  }
 
   move = (roll: number): number => {
     this.position = Board.shiftPosition(this.position, roll);
@@ -88,7 +90,9 @@ class Player {
     }
   };
 
-  deprecatedGetName = (): string => this.name;
+  logCurrentPlayer = (): void => {
+    console.log(`The new current player is ${this.name}.`);
+  };
 
   deprecatedFreeOfPenaltyBox = (): void => {
     this.isInPenaltyBox = false;
