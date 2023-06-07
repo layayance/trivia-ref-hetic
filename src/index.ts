@@ -29,13 +29,17 @@ export class Game {
     this.places[this.howManyPlayers() - 1] = 0;
     this.purses[this.howManyPlayers() - 1] = 0;
     this.inPenaltyBox[this.howManyPlayers() - 1] = false;
+    console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
   }
 
   private howManyPlayers(): number {
     return this.players.length;
   }
 
+  private deprecatedGetCurrentPlayerName = (): string => this.players[this.currentPlayer];
+
   public roll(roll: number) {
+    console.log(`${this.deprecatedGetCurrentPlayerName()} rolled a ${roll}.`);
     if (this.inPenaltyBox[this.currentPlayer]) {
       if (roll % 2 != 0) {
         this.isGettingOutOfPenaltyBox = true;
@@ -92,6 +96,7 @@ export class Game {
   }
 
   public wasCorrectlyAnswered(): boolean {
+    console.log(`${this.deprecatedGetCurrentPlayerName()} provided the correct answer.`);
     if (this.inPenaltyBox[this.currentPlayer]) {
       if (this.isGettingOutOfPenaltyBox) {
         this.inPenaltyBox[this.currentPlayer] = false;
@@ -109,11 +114,20 @@ export class Game {
       }
     } else {
       this.purses[this.currentPlayer] += 1;
+      console.log(
+        `${this.deprecatedGetCurrentPlayerName()} earned a coin and consequently has ${
+          this.purses[this.currentPlayer]
+        } points.`
+      );
 
       var winner = this.didPlayerWin();
+      if (winner) {
+        console.log(`${this.deprecatedGetCurrentPlayerName()} won the game.`);
+      }
 
       this.currentPlayer += 1;
       if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
+      console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
 
       return winner;
     }
