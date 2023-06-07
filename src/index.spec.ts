@@ -194,3 +194,20 @@ test("A player rolls an even number and stays in the penalty box", async () => {
     game.roll(2);
   });
 });
+
+test("A player rolls an odd number and goes out of the penalty box, but then provides a wrong answer", async () => {
+  runGoldenMaster(async () => {
+    const game = new Game();
+    game.add("Mathieu");
+    game.add("Thomas");
+
+    game.roll(1);
+    game.wrongAnswer();
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    game.roll(1);
+    game.wrongAnswer();
+  });
+});

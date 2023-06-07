@@ -47,6 +47,11 @@ export class Game {
         if (this.places[this.currentPlayer] > 11) {
           this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
         }
+        console.log(
+          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and goes out of the penalty box; their new position is ${
+            this.places[this.currentPlayer]
+          }.`
+        );
 
         this.askQuestion();
       } else {
