@@ -6,7 +6,7 @@ exports[`A player provides a wrong answer ang goes to penalty box 1`] = `
   "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
   "Mathieu rolled a 1 and their new position is 1.",
   "Science Question 0",
-  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Thomas.",
   "Thomas rolled a 1 and their new position is 1.",
   "Science Question 1",
@@ -27,7 +27,7 @@ exports[`A player provides a wrong answer ang goes to penalty box 2`] = `
   "The new current player is Thomas.",
   "Thomas rolled a 1 and their new position is 1.",
   "Science Question 1",
-  "Thomas provided a wrong answer and consequently goes to penalty box.",
+  "Thomas provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Mathieu.",
 ]
 `;
@@ -38,7 +38,7 @@ exports[`A player rolls an even number and stays in the penalty box 1`] = `
   "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
   "Mathieu rolled a 1 and their new position is 1.",
   "Science Question 0",
-  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Thomas.",
   "Thomas rolled a 1 and their new position is 1.",
   "Science Question 1",
@@ -49,22 +49,44 @@ exports[`A player rolls an even number and stays in the penalty box 1`] = `
 ]
 `;
 
-exports[`A player rolls an odd number and goes out of the penalty box, but then provides a wrong answer 1`] = `
+exports[`A player rolls an odd number and goes out of the penalty box, and then provides the correct answer 1`] = `
 [
   "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
   "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
   "Mathieu rolled a 1 and their new position is 1.",
   "Science Question 0",
-  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Thomas.",
   "Thomas rolled a 1 and their new position is 1.",
   "Science Question 1",
   "Thomas provided the correct answer.",
   "Thomas earned a coin and consequently has 1 point(s).",
   "The new current player is Mathieu.",
-  "Mathieu rolled a 1 and goes out of the penalty box; their new position is 2.",
+  "Mathieu rolled a 1 and might go out of the penalty box; their new position is 2.",
   "Sports Question 0",
-  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "Mathieu provided the correct answer.",
+  "Mathieu goes out of the penalty box.",
+  "Mathieu earned a coin and consequently has 1 point(s).",
+  "The new current player is Thomas.",
+]
+`;
+
+exports[`A player rolls an odd number and goes out of the penalty box, but then provides a wrong answer 1`] = `
+[
+  "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "Mathieu rolled a 1 and their new position is 1.",
+  "Science Question 0",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
+  "The new current player is Thomas.",
+  "Thomas rolled a 1 and their new position is 1.",
+  "Science Question 1",
+  "Thomas provided the correct answer.",
+  "Thomas earned a coin and consequently has 1 point(s).",
+  "The new current player is Mathieu.",
+  "Mathieu rolled a 1 and might go out of the penalty box; their new position is 2.",
+  "Sports Question 0",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Thomas.",
 ]
 `;
@@ -75,16 +97,16 @@ exports[`A player rolls an odd number and goes out of the penalty box, but then 
   "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
   "Mathieu rolled a 10 and their new position is 10.",
   "Sports Question 0",
-  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Thomas.",
   "Thomas rolled a 1 and their new position is 1.",
   "Science Question 0",
   "Thomas provided the correct answer.",
   "Thomas earned a coin and consequently has 1 point(s).",
   "The new current player is Mathieu.",
-  "Mathieu rolled a 5 and goes out of the penalty box; their new position is 3.",
+  "Mathieu rolled a 5 and might go out of the penalty box; their new position is 3.",
   "Rock Question 0",
-  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "Mathieu provided a wrong answer and consequently goes to the penalty box.",
   "The new current player is Thomas.",
 ]
 `;

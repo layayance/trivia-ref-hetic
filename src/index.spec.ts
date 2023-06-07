@@ -245,3 +245,20 @@ test("A player rolls an odd number and goes out of the penalty box, but then pro
     game.wrongAnswer();
   });
 });
+
+test("A player rolls an odd number and goes out of the penalty box, and then provides the correct answer", async () => {
+  runGoldenMaster(async () => {
+    const game = new Game();
+    game.add("Mathieu");
+    game.add("Thomas");
+
+    game.roll(1);
+    game.wrongAnswer();
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+  });
+});

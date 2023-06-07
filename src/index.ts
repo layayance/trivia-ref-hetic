@@ -36,8 +36,6 @@ export class Game {
     return this.players.length;
   }
 
-  private deprecatedGetCurrentPlayerName = (): string => this.players[this.currentPlayer];
-
   public roll(roll: number) {
     if (this.inPenaltyBox[this.currentPlayer]) {
       if (roll % 2 != 0) {
@@ -48,7 +46,7 @@ export class Game {
           this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
         }
         console.log(
-          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and goes out of the penalty box; their new position is ${
+          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and might go out of the penalty box; their new position is ${
             this.places[this.currentPlayer]
           }.`
         );
@@ -103,7 +101,7 @@ export class Game {
 
   public wrongAnswer(): boolean {
     console.log(
-      `${this.deprecatedGetCurrentPlayerName()} provided a wrong answer and consequently goes to penalty box.`
+      `${this.deprecatedGetCurrentPlayerName()} provided a wrong answer and consequently goes to the penalty box.`
     );
     this.inPenaltyBox[this.currentPlayer] = true;
 
@@ -119,11 +117,23 @@ export class Game {
     if (this.inPenaltyBox[this.currentPlayer]) {
       if (this.isGettingOutOfPenaltyBox) {
         this.inPenaltyBox[this.currentPlayer] = false;
+        console.log(`${this.deprecatedGetCurrentPlayerName()} goes out of the penalty box.`);
+
         this.purses[this.currentPlayer] += 1;
+        console.log(
+          `${this.deprecatedGetCurrentPlayerName()} earned a coin and consequently has ${
+            this.purses[this.currentPlayer]
+          } point(s).`
+        );
 
         var winner = this.didPlayerWin();
+        if (winner) {
+          console.log(`${this.deprecatedGetCurrentPlayerName()} won the game.`);
+        }
+
         this.currentPlayer += 1;
         if (this.currentPlayer == this.players.length) this.currentPlayer = 0;
+        console.log(`The new current player is ${this.deprecatedGetCurrentPlayerName()}.`);
 
         return winner;
       } else {
@@ -151,4 +161,6 @@ export class Game {
       return winner;
     }
   }
+
+  private deprecatedGetCurrentPlayerName = (): string => this.players[this.currentPlayer];
 }
