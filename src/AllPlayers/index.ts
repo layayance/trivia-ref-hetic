@@ -13,6 +13,10 @@ class AllPlayers {
     this.currentPlayerIndex = (this.currentPlayerIndex + 1) % numberOfPlayers;
     return this.players[this.currentPlayerIndex];
   };
+
+  getCurrentPlayer = (): Player => {
+    return this.players[this.currentPlayerIndex];
+  };
 }
 
 export default AllPlayers;

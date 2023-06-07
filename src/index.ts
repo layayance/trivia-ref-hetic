@@ -9,7 +9,6 @@ export class Game {
   private deprecatedPlayers: Array<string> = [];
   private deprecatedCurrentPlayerIndex: number = 0;
 
-  private deprecatedPlaces: Array<number> = [];
   private deprecatedPurses: Array<number> = [];
   private deprecatedInPenaltyBox: Array<boolean> = [];
 
@@ -21,7 +20,6 @@ export class Game {
     this.players.add(new Player(name));
 
     this.deprecatedPlayers.push(name);
-    this.deprecatedPlaces[this.howManyPlayers() - 1] = 0;
     this.deprecatedPurses[this.howManyPlayers() - 1] = 0;
     this.deprecatedInPenaltyBox[this.howManyPlayers() - 1] = false;
     console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
@@ -41,35 +39,30 @@ export class Game {
         // - inPenaltyBox: ${this.inPenaltyBox[this.currentPlayer]}
         // - isGettingOutOfPenaltyBox: ${this.isGettingOutOfPenaltyBox}`);
 
-        this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex] = Board.shiftPosition(
-          this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex],
-          roll
-        );
+        this.players.getCurrentPlayer().move(roll);
 
         console.log(
-          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and might go out of the penalty box; their new position is ${
-            this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex]
-          }.`
+          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and might go out of the penalty box; their new position is ${this.players
+            .getCurrentPlayer()
+            .deprecatedGetPosition()}.`
         );
 
         this.askQuestion();
       } else {
         this.isGettingOutOfPenaltyBox = false;
         console.log(
-          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and stays in penalty box (their position is ${
-            this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex]
-          }).`
+          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and stays in penalty box (their position is ${this.players
+            .getCurrentPlayer()
+            .deprecatedGetPosition()}).`
         );
       }
     } else {
-      this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex] = Board.shiftPosition(
-        this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex],
-        roll
-      );
+      this.players.getCurrentPlayer().move(roll);
+
       console.log(
-        `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and their new position is ${
-          this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex]
-        }.`
+        `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and their new position is ${this.players
+          .getCurrentPlayer()
+          .deprecatedGetPosition()}.`
       );
 
       this.askQuestion();
@@ -82,7 +75,7 @@ export class Game {
   }
 
   private currentCategory(): string {
-    const position = this.deprecatedPlaces[this.deprecatedCurrentPlayerIndex];
+    const position = this.players.getCurrentPlayer().deprecatedGetPosition();
     return Board.computeCurrentCategory(position);
   }
 
@@ -95,6 +88,8 @@ export class Game {
       `${this.deprecatedGetCurrentPlayerName()} provided a wrong answer and consequently goes to the penalty box.`
     );
     this.deprecatedInPenaltyBox[this.deprecatedCurrentPlayerIndex] = true;
+
+    this.players.switchToNextPlayer();
 
     this.deprecatedCurrentPlayerIndex += 1;
     if (this.deprecatedCurrentPlayerIndex == this.deprecatedPlayers.length) this.deprecatedCurrentPlayerIndex = 0;
@@ -162,5 +157,5 @@ export class Game {
     }
   }
 
-  private deprecatedGetCurrentPlayerName = (): string => this.deprecatedPlayers[this.deprecatedCurrentPlayerIndex];
+  private deprecatedGetCurrentPlayerName = (): string => this.players.getCurrentPlayer().deprecatedGetName();
 }
