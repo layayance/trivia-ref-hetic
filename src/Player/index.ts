@@ -5,8 +5,7 @@ class Player {
   private position = 0;
   private coins = 0;
   private isInPenaltyBox = false;
-
-  private deprecatedIsGettingOutOfPenaltyBox = false;
+  private isGettingOutOfPenaltyBox = false;
 
   constructor(private name: string) {
     console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
@@ -34,7 +33,7 @@ class Player {
   roll = (questions: AllQuestionsSets, roll: number): void => {
     if (this.isInPenaltyBox) {
       if (roll % 2 != 0) {
-        this.deprecatedIsGettingOutOfPenaltyBox = true;
+        this.isGettingOutOfPenaltyBox = true;
 
         this.move(roll);
 
@@ -46,7 +45,7 @@ class Player {
         return;
       }
 
-      this.deprecatedIsGettingOutOfPenaltyBox = false;
+      this.isGettingOutOfPenaltyBox = false;
       console.log(`${this.name} rolled a ${roll} and stays in penalty box (their position is ${this.position}).`);
       return;
     }
@@ -66,7 +65,7 @@ class Player {
     console.log(`${this.name} provided the correct answer.`);
 
     if (this.isInPenaltyBox) {
-      if (this.deprecatedIsGettingOutOfPenaltyBox) {
+      if (this.isGettingOutOfPenaltyBox) {
         this.isInPenaltyBox = false;
         console.log(`${this.name} goes out of the penalty box.`);
 
