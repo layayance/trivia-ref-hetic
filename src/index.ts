@@ -51,6 +51,11 @@ export class Game {
         this.askQuestion();
       } else {
         this.isGettingOutOfPenaltyBox = false;
+        console.log(
+          `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and stays in penalty box (their position is ${
+            this.places[this.currentPlayer]
+          }).`
+        );
       }
     } else {
       this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;

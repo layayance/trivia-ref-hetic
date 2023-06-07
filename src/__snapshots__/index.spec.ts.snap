@@ -32,6 +32,23 @@ exports[`A player provides a wrong answer ang goes to penalty box 2`] = `
 ]
 `;
 
+exports[`A player rolls an even number and stays in the penalty box 1`] = `
+[
+  "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "Mathieu rolled a 1 and their new position is 1.",
+  "Science Question 0",
+  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "The new current player is Thomas.",
+  "Thomas rolled a 1 and their new position is 1.",
+  "Science Question 1",
+  "Thomas provided the correct answer.",
+  "Thomas earned a coin and consequently has 1 point(s).",
+  "The new current player is Mathieu.",
+  "Mathieu rolled a 2 and stays in penalty box (their position is 1).",
+]
+`;
+
 exports[`A player wins by providing correct answers each time 1`] = `
 [
   "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
