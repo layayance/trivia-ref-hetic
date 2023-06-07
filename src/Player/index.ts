@@ -3,6 +3,7 @@ import Board from "../Board";
 class Player {
   private position = 0;
   private coins = 0;
+  private isInPenaltyBox = false;
 
   constructor(private name: string) {}
 
@@ -28,6 +29,16 @@ class Player {
   deprecatedGetName = (): string => this.name;
 
   deprecatedGetPosition = (): number => this.position;
+
+  deprecatedSetInPenaltyBox = (): void => {
+    this.isInPenaltyBox = true;
+  };
+
+  deprecatedFreeOfPenaltyBox = (): void => {
+    this.isInPenaltyBox = false;
+  };
+
+  deprecatedIsInPenaltyBox = (): boolean => this.isInPenaltyBox;
 }
 
 export default Player;

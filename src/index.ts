@@ -9,26 +9,17 @@ export class Game {
   private deprecatedPlayers: Array<string> = [];
   private deprecatedCurrentPlayerIndex: number = 0;
 
-  private deprecatedInPenaltyBox: Array<boolean> = [];
-
   private isGettingOutOfPenaltyBox: boolean = false;
 
   private questions = new AllQuestionsSets();
 
   public add(name: string) {
     this.players.add(new Player(name));
-
     this.deprecatedPlayers.push(name);
-    this.deprecatedInPenaltyBox[this.howManyPlayers() - 1] = false;
-    console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
-  }
-
-  private howManyPlayers(): number {
-    return this.deprecatedPlayers.length;
   }
 
   public roll(roll: number) {
-    if (this.deprecatedInPenaltyBox[this.deprecatedCurrentPlayerIndex]) {
+    if (this.players.getCurrentPlayer().deprecatedIsInPenaltyBox()) {
       if (roll % 2 != 0) {
         this.isGettingOutOfPenaltyBox = true;
 
@@ -85,7 +76,7 @@ export class Game {
     console.log(
       `${this.deprecatedGetCurrentPlayerName()} provided a wrong answer and consequently goes to the penalty box.`
     );
-    this.deprecatedInPenaltyBox[this.deprecatedCurrentPlayerIndex] = true;
+    this.players.getCurrentPlayer().deprecatedSetInPenaltyBox();
 
     this.players.switchToNextPlayer();
 
@@ -98,9 +89,9 @@ export class Game {
 
   public wasCorrectlyAnswered(): boolean {
     console.log(`${this.deprecatedGetCurrentPlayerName()} provided the correct answer.`);
-    if (this.deprecatedInPenaltyBox[this.deprecatedCurrentPlayerIndex]) {
+    if (this.players.getCurrentPlayer().deprecatedIsInPenaltyBox()) {
       if (this.isGettingOutOfPenaltyBox) {
-        this.deprecatedInPenaltyBox[this.deprecatedCurrentPlayerIndex] = false;
+        this.players.getCurrentPlayer().deprecatedFreeOfPenaltyBox();
         console.log(`${this.deprecatedGetCurrentPlayerName()} goes out of the penalty box.`);
 
         this.players.getCurrentPlayer().earnACoin();

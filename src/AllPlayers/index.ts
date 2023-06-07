@@ -6,6 +6,9 @@ class AllPlayers {
 
   add = (player: Player): void => {
     this.players.push(player);
+    console.log(
+      `New player added: ${player.deprecatedGetName()}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`
+    );
   };
 
   switchToNextPlayer = (): Player => {
