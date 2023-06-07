@@ -39,7 +39,6 @@ export class Game {
   private deprecatedGetCurrentPlayerName = (): string => this.players[this.currentPlayer];
 
   public roll(roll: number) {
-    console.log(`${this.deprecatedGetCurrentPlayerName()} rolled a ${roll}.`);
     if (this.inPenaltyBox[this.currentPlayer]) {
       if (roll % 2 != 0) {
         this.isGettingOutOfPenaltyBox = true;
@@ -58,6 +57,11 @@ export class Game {
       if (this.places[this.currentPlayer] > 11) {
         this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
       }
+      console.log(
+        `${this.deprecatedGetCurrentPlayerName()} rolled a ${roll} and their new position is ${
+          this.places[this.currentPlayer]
+        }.`
+      );
 
       this.askQuestion();
     }
