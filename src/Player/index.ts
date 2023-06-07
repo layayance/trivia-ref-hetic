@@ -93,14 +93,6 @@ class Player {
   logCurrentPlayer = (): void => {
     console.log(`The new current player is ${this.name}.`);
   };
-
-  deprecatedFreeOfPenaltyBox = (): void => {
-    this.isInPenaltyBox = false;
-  };
-
-  deprecatedIsInPenaltyBox = (): boolean => this.isInPenaltyBox;
-
-  deprecatedGetIsGettingOutOfPenaltyBox = (): boolean => this.deprecatedIsGettingOutOfPenaltyBox;
 }
 
 export default Player;
