@@ -40,11 +40,6 @@ class Player {
       if (roll % 2 != 0) {
         this.deprecatedIsGettingOutOfPenaltyBox = true;
 
-        // console.log(`This is a paradox:
-        // - place: ${this.places[this.currentPlayer]}
-        // - inPenaltyBox: ${this.inPenaltyBox[this.currentPlayer]}
-        // - isGettingOutOfPenaltyBox: ${this.isGettingOutOfPenaltyBox}`);
-
         this.move(roll);
 
         console.log(
@@ -65,13 +60,12 @@ class Player {
     }
   };
 
-  deprecatedGetName = (): string => this.name;
-
-  deprecatedGetPosition = (): number => this.position;
-
-  deprecatedSetInPenaltyBox = (): void => {
+  provideWrongAnswer = (): void => {
+    console.log(`${this.name} provided a wrong answer and consequently goes to the penalty box.`);
     this.isInPenaltyBox = true;
   };
+
+  deprecatedGetName = (): string => this.name;
 
   deprecatedFreeOfPenaltyBox = (): void => {
     this.isInPenaltyBox = false;

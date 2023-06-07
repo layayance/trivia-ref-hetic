@@ -21,10 +21,7 @@ export class Game {
   }
 
   public wrongAnswer(): boolean {
-    console.log(
-      `${this.deprecatedGetCurrentPlayerName()} provided a wrong answer and consequently goes to the penalty box.`
-    );
-    this.players.getCurrentPlayer().deprecatedSetInPenaltyBox();
+    this.players.getCurrentPlayer().provideWrongAnswer();
 
     this.players.switchToNextPlayer();
 
