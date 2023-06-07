@@ -69,6 +69,26 @@ exports[`A player rolls an odd number and goes out of the penalty box, but then 
 ]
 `;
 
+exports[`A player rolls an odd number and goes out of the penalty box, but then provides a wrong answer 2`] = `
+[
+  "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "Mathieu rolled a 10 and their new position is 10.",
+  "Sports Question 0",
+  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "The new current player is Thomas.",
+  "Thomas rolled a 1 and their new position is 1.",
+  "Science Question 0",
+  "Thomas provided the correct answer.",
+  "Thomas earned a coin and consequently has 1 point(s).",
+  "The new current player is Mathieu.",
+  "Mathieu rolled a 5 and goes out of the penalty box; their new position is 3.",
+  "Rock Question 0",
+  "Mathieu provided a wrong answer and consequently goes to penalty box.",
+  "The new current player is Thomas.",
+]
+`;
+
 exports[`A player wins by providing correct answers each time 1`] = `
 [
   "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
@@ -128,6 +148,28 @@ exports[`A player wins by providing correct answers each time 1`] = `
   "Mathieu provided the correct answer.",
   "Mathieu earned a coin and consequently has 6 point(s).",
   "Mathieu won the game.",
+  "The new current player is Thomas.",
+]
+`;
+
+exports[`Players move on a closed board 1`] = `
+[
+  "New player added: Mathieu; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "New player added: Thomas; their place is 0 and they have 0 coins. They are NOT in the penalty box.",
+  "Mathieu rolled a 10 and their new position is 10.",
+  "Sports Question 0",
+  "Mathieu provided the correct answer.",
+  "Mathieu earned a coin and consequently has 1 point(s).",
+  "The new current player is Thomas.",
+  "Thomas rolled a 1 and their new position is 1.",
+  "Science Question 0",
+  "Thomas provided the correct answer.",
+  "Thomas earned a coin and consequently has 1 point(s).",
+  "The new current player is Mathieu.",
+  "Mathieu rolled a 5 and their new position is 3.",
+  "Rock Question 0",
+  "Mathieu provided the correct answer.",
+  "Mathieu earned a coin and consequently has 2 point(s).",
   "The new current player is Thomas.",
 ]
 `;

@@ -43,6 +43,23 @@ test("A player wins by providing correct answers each time", async () => {
   });
 });
 
+test("Players move on a closed board", async () => {
+  runGoldenMaster(async () => {
+    const game = new Game();
+    game.add("Mathieu");
+    game.add("Thomas");
+
+    game.roll(10);
+    game.wasCorrectlyAnswered();
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    game.roll(5);
+    game.wasCorrectlyAnswered();
+  });
+});
+
 test("place -> category", async () => {
   runGoldenMaster(async () => {
     const game = new Game();
@@ -208,6 +225,23 @@ test("A player rolls an odd number and goes out of the penalty box, but then pro
     game.wasCorrectlyAnswered();
 
     game.roll(1);
+    game.wrongAnswer();
+  });
+});
+
+test("A player rolls an odd number and goes out of the penalty box, but then provides a wrong answer", async () => {
+  runGoldenMaster(async () => {
+    const game = new Game();
+    game.add("Mathieu");
+    game.add("Thomas");
+
+    game.roll(10);
+    game.wrongAnswer();
+
+    game.roll(1);
+    game.wasCorrectlyAnswered();
+
+    game.roll(5);
     game.wrongAnswer();
   });
 });
