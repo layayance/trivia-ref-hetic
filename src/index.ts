@@ -1,3 +1,5 @@
+import AllQuestionsSets, { Category } from "./AllQuestionsSets";
+
 export class Game {
   private players: Array<string> = [];
   private places: Array<number> = [];
@@ -6,23 +8,7 @@ export class Game {
   private currentPlayer: number = 0;
   private isGettingOutOfPenaltyBox: boolean = false;
 
-  private popQuestions: Array<string> = [];
-  private scienceQuestions: Array<string> = [];
-  private sportsQuestions: Array<string> = [];
-  private rockQuestions: Array<string> = [];
-
-  constructor() {
-    for (let i = 0; i < 50; i++) {
-      this.popQuestions.push("Pop Question " + i);
-      this.scienceQuestions.push("Science Question " + i);
-      this.sportsQuestions.push("Sports Question " + i);
-      this.rockQuestions.push(this.createRockQuestion(i));
-    }
-  }
-
-  private createRockQuestion(index: number): string {
-    return "Rock Question " + index;
-  }
+  private questions = new AllQuestionsSets();
 
   public add(name: string) {
     this.players.push(name);
@@ -81,10 +67,8 @@ export class Game {
   }
 
   private askQuestion(): void {
-    if (this.currentCategory() == "Pop") console.log(this.popQuestions.shift());
-    if (this.currentCategory() == "Science") console.log(this.scienceQuestions.shift());
-    if (this.currentCategory() == "Sports") console.log(this.sportsQuestions.shift());
-    if (this.currentCategory() == "Rock") console.log(this.rockQuestions.shift());
+    const question = this.questions.ask(this.currentCategory() as Category);
+    console.log(question);
   }
 
   private currentCategory(): string {

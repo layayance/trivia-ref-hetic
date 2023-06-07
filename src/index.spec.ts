@@ -168,7 +168,7 @@ test("place -> category", async () => {
   });
 });
 
-test("A player provides a wrong answer ang goes to penalty box", async () => {
+test("A player provides a wrong answer and goes to penalty box", async () => {
   runGoldenMaster(async () => {
     const game = new Game();
     game.add("Mathieu");
@@ -182,7 +182,7 @@ test("A player provides a wrong answer ang goes to penalty box", async () => {
   });
 });
 
-test("A player provides a wrong answer ang goes to penalty box", async () => {
+test("A player provides a wrong answer and goes to penalty box", async () => {
   runGoldenMaster(async () => {
     const game = new Game();
     game.add("Mathieu");
