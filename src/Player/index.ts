@@ -11,25 +11,6 @@ class Player {
     console.log(`New player added: ${name}; their place is 0 and they have 0 coins. They are NOT in the penalty box.`);
   }
 
-  move = (roll: number): number => {
-    this.position = Board.shiftPosition(this.position, roll);
-    return this.position;
-  };
-
-  earnACoin = (): number => {
-    this.coins += 1;
-    console.log(`${this.name} earned a coin and consequently has ${this.coins} point(s).`);
-    return this.coins;
-  };
-
-  playerWins = (): boolean => {
-    const playerWins = this.coins === 6;
-    if (playerWins) {
-      console.log(`${this.name} won the game.`);
-    }
-    return playerWins;
-  };
-
   roll = (questions: AllQuestionsSets, roll: number): void => {
     if (this.isInPenaltyBox) {
       if (roll % 2 != 0) {
@@ -49,6 +30,7 @@ class Player {
       console.log(`${this.name} rolled a ${roll} and stays in penalty box (their position is ${this.position}).`);
       return;
     }
+
     this.move(roll);
 
     console.log(`${this.name} rolled a ${roll} and their new position is ${this.position}.`);
@@ -56,9 +38,11 @@ class Player {
     this.askQuestion(questions);
   };
 
-  provideWrongAnswer = (): void => {
+  provideWrongAnswer = (): false => {
     console.log(`${this.name} provided a wrong answer and consequently goes to the penalty box.`);
     this.isInPenaltyBox = true;
+    // No golden master test captured this behavior and it was lost during the process of refactoring 😢
+    return false;
   };
 
   provideCorrectAnswer = (): boolean => {
@@ -86,6 +70,25 @@ class Player {
 
   logCurrentPlayer = (): void => {
     console.log(`The new current player is ${this.name}.`);
+  };
+
+  private move = (roll: number): number => {
+    this.position = Board.shiftPosition(this.position, roll);
+    return this.position;
+  };
+
+  private earnACoin = (): number => {
+    this.coins += 1;
+    console.log(`${this.name} earned a coin and consequently has ${this.coins} point(s).`);
+    return this.coins;
+  };
+
+  private playerWins = (): boolean => {
+    const playerWins = this.coins === 6;
+    if (playerWins) {
+      console.log(`${this.name} won the game.`);
+    }
+    return playerWins;
   };
 
   private askQuestion(questions: AllQuestionsSets): void {
