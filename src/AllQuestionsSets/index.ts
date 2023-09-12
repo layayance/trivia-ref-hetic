@@ -23,8 +23,13 @@ class AllQuestionsSets {
   }
 
   ask = (category: Category): string => {
-    return this.questions[category].ask();
+    const categoryQuestions = this.questions[category];
+    if (categoryQuestions) {
+      return categoryQuestions.ask();
+    }
+    return "No questions available for this category.";
   };
 }
+
 
 export default AllQuestionsSets;
